@@ -9,7 +9,7 @@ ENV LC_ALL en_US.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
-  language-pack-en
+  locales
 RUN locale-gen en_US
 RUN apt-get update && apt-get install -y \
   apt-transport-https \
