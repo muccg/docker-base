@@ -8,7 +8,6 @@ ENV LC_ALL en_US.UTF-8
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Common for caching
 RUN apt-get update && apt-get install -y \
   language-pack-en
 RUN locale-gen en_US
