@@ -9,12 +9,12 @@ ENV LC_ALL en_US.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
-  language-pack-en
-RUN locale-gen en_US
-RUN apt-get update && apt-get install -y \
+  language-pack-en \
+  && locale-gen en_US \
+  && apt-get update && apt-get install -y \
   apt-transport-https \
   build-essential \
-  ca-certificates
+  ca-certificates \
+  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN env --unset=DEBIAN_FRONTEND
