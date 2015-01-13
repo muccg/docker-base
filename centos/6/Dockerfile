@@ -7,6 +7,9 @@ RUN yum install -y \
 RUN yum install -y \
   http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/x86_64/ius-release-1.0-13.ius.centos6.noarch.rpm
 
+RUN yum install -y \
+  http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+
 RUN yum clean all && yum install -y \
   gcc \
   gcc-c++ \
