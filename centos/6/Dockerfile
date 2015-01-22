@@ -23,6 +23,4 @@ RUN groupadd --gid 1000 ccg-user \
   && mkdir /data \
   && chown ccg-user:ccg-user /data
 
-VOLUME ["/app", "/data"]
-
 CMD /bin/sh
