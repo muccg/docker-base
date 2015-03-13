@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER ccg <ccgdevops@googlegroups.com>
+MAINTAINER ccg <devops@ccg.murdoch.edu.au>
 
 ENV HOME /root
 ENV LANG en_US.UTF-8

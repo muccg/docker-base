@@ -1,6 +1,6 @@
 #
 FROM centos:centos6
-MAINTAINER ccg <ccgdevops@googlegroups.com>
+MAINTAINER ccg <devops@ccg.murdoch.edu.au>
 
 ENV HOME /root
 
