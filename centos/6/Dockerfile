@@ -1,6 +1,6 @@
 #
 FROM centos:centos6
-MAINTAINER ccg <devops@ccg.murdoch.edu.au>
+MAINTAINER https://github.com/muccg
 
 ENV HOME /root
 

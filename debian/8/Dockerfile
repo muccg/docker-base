@@ -1,6 +1,6 @@
 #
 FROM debian:jessie
-MAINTAINER ccg <devops@ccg.murdoch.edu.au>
+MAINTAINER https://github.com/muccg
 
 ENV HOME /root
 ENV LANG en_US.UTF-8
