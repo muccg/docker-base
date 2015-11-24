@@ -18,15 +18,4 @@ RUN groupadd --gid 1000 ccg-user \
   && mkdir /data \
   && chown ccg-user:ccg-user /data
 
-ENV BUILD_HOST_FILE /data/build_host.txt
-ENV YUM_CONF /etc/yum.conf
-
 CMD /bin/sh
-
-# Determine build host
-ONBUILD RUN netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}' > ${BUILD_HOST_FILE}
-
-# squid proxy if available
-ONBUILD RUN curl -v -I -H "HEAD /" `cat ${BUILD_HOST_FILE}`:3128 | grep squid-deb-proxy \
-  && (echo "proxy=http://$(cat ${BUILD_HOST_FILE}):3128" >> ${YUM_CONF}) \
-  || echo "No squid-deb-proxy detected on docker host"
