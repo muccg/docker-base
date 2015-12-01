@@ -15,8 +15,8 @@ HTTP_PROXY="http://${DOCKER_HOST}:3128"
 
 
 ci_docker_login() {
-    if [ -n "$BAMBOO_DOCKER_USERNAME" ] && [ -n "$BAMBOO_DOCKER_EMAIL" ] && [ -n "$BAMBOO_DOCKER_PASSWORD" ]; then
-        docker login  -e "${BAMBOO_DOCKER_EMAIL}" -u ${BAMBOO_DOCKER_USERNAME} --password="${BAMBOO_DOCKER_PASSWORD}"
+    if [ -n "$bamboo_DOCKER_USERNAME" ] && [ -n "$bamboo_DOCKER_EMAIL" ] && [ -n "$bamboo_DOCKER_PASSWORD" ]; then
+        docker login  -e "${bamboo_DOCKER_EMAIL}" -u ${bamboo_DOCKER_USERNAME} --password="${bamboo_DOCKER_PASSWORD}"
     else
         echo "Docker vars not set, not logging in to docker registry"
     fi
