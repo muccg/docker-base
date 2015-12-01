@@ -13,6 +13,17 @@ DOCKER_HOST=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
 HTTP_PROXY="http://${DOCKER_HOST}:3128"
 : ${DOCKER_BUILD_OPTIONS:="--pull=true --build-arg HTTP_PROXY=${HTTP_PROXY} --build-arg http_proxy=${HTTP_PROXY}"}
 
+
+ci_docker_login() {
+    if [ -n "$BAMBOO_DOCKER_USERNAME" ] && [ -n "$BAMBOO_DOCKER_EMAIL" ] && [ -n "$BAMBOO_DOCKER_PASSWORD" ]; then
+        docker login  -e "${BAMBOO_DOCKER_EMAIL}" -u ${BAMBOO_DOCKER_USERNAME} --password="${BAMBOO_DOCKER_PASSWORD}"
+    else
+        echo "Docker vars not set, not logging in to docker registry"
+    fi
+}
+
+ci_docker_login
+
 # build dirs, top level is distro
 for dir in */
 do
