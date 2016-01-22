@@ -40,15 +40,23 @@ do
         # warm up cache for CI
         docker pull ${image}:latest || true
 
-        # build
+        # build and tag legacy names
         docker build ${DOCKER_BUILD_OPTIONS} -t ${image}:${DATE} ${subdir}
         docker build ${DOCKER_BUILD_OPTIONS} -t ${image}:latest ${subdir}
+
+	# new names
+        docker build ${DOCKER_BUILD_OPTIONS} -t "${REPO}/base:${distro}-${version}" ${subdir}
+        docker build ${DOCKER_BUILD_OPTIONS} -t "${REPO}/base:${distro}-${version}-${DATE}" ${subdir}
 
         # for logging in CI
         docker inspect ${image}:${DATE}
 
-        # push
+        # push to legacy repo
         docker push ${image}:${DATE}
         docker push ${image}:latest
+
+	# push to new repo
+        docker push "${REPO}/base:${distro}-${version}"
+        docker push "${REPO}/base:${distro}-${version}-${DATE}"
     done
 done

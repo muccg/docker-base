@@ -1,13 +1,11 @@
 #
-FROM debian:jessie
+FROM buildpack-deps:jessie-curl
 MAINTAINER https://github.com/muccg
 
 ENV HOME /root
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
-
-ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   locales \
@@ -22,12 +20,7 @@ RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   apt-transport-https \
-  ca-certificates \
-  netcat \
-  net-tools \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN env --unset=DEBIAN_FRONTEND
 
 RUN mkdir /app
 
