@@ -7,5 +7,7 @@ node {
     stage 'Build'
         echo "Branch is: ${env.BRANCH_NAME}"
         echo "Build is: ${env.BUILD_NUMBER}"
-        sh './build.sh'
+        wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+            sh './build.sh'
+        }
 }
