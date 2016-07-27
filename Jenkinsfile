@@ -7,7 +7,12 @@ node {
     stage 'Build'
         echo "Branch is: ${env.BRANCH_NAME}"
         echo "Build is: ${env.BUILD_NUMBER}"
-        wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
-            sh './build.sh'
+        env.DOCKER_USE_HUB = 1
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerbot',
+                          usernameVariable: 'DOCKER_USERNAME', 
+                          passwordVariable: 'DOCKER_PASSWORD']]) {
+            wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+                sh './build.sh'
+            }
         }
 }
