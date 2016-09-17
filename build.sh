@@ -8,8 +8,6 @@
 
 set -e
 
-REPO="muccg"
-
 docker_options
 
 info "${DOCKER_BUILD_OPTS}"
@@ -36,7 +34,7 @@ do
         # for logging in CI
         docker inspect ${image}
 
-        # push to legacy repo
+        # push
         if [ ${DOCKER_USE_HUB} = "1" ]; then
             _ci_docker_login
             docker push ${image}
